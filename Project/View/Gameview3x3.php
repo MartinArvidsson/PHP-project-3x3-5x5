@@ -149,7 +149,7 @@ class Gameview3x3
     			{
     			//REGULAR BUTTON
     		    $boardtogen .= "
-    			    <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\"></>
+    			    <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" id=\"Gamebutton\"></>
     			";
     		}
     		$boardtogen .= "</td>";
@@ -179,7 +179,7 @@ class Gameview3x3
     			{
     			//REGULAR BUTTON
     		    $boardtogen .= "
-    			    <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true></>
+    			    <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true id=\"Gamebutton\"></>
     			";
     		}
     		$boardtogen .= "</td>";

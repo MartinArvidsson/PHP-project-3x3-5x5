@@ -8,6 +8,7 @@ class LayoutView
       <html>
         <head>
           <meta charset="utf-8">
+          <link href="../Project/Content/Stylesheet.css" rel="stylesheet" type="text/css">
           <title>PhP Project</title>
         </head>
         <body>

@@ -40,18 +40,18 @@ class GameModel5x5
 		$board = $this->board->board;
 		//Rows	
 		 for ($i = 0; $i < 5; $i++)
-		     if ($board[$i][0] && $board[$i][0] == $board[$i][1] && $board[$i][1] == $board[$i][2] && $board[$i][2] == $board[$i][3] && $board[$i][3] == $board[$i][4] && $board[$i][4] == $board[$i][5])
+		     if ($board[$i][0] && $board[$i][0] == $board[$i][1] && $board[$i][1] == $board[$i][2] && $board[$i][2] == $board[$i][3] && $board[$i][3] == $board[$i][4])
 		         $this->boardtoreturn->winner = $board[$i][0];
 		
 		//Columns
 		for ($i = 0; $i < 5; $i++)
-		    if ($board[0][$i] && $board[0][$i] == $board[1][$i] && $board[1][$i] == $board[2][$i] && $board[2][$i] == $board[3][$i] && $board[3][$i] == $board[4][$i] && $board[41][$i] == $board[5][$i])
+		    if ($board[0][$i] && $board[0][$i] == $board[1][$i] && $board[1][$i] == $board[2][$i] && $board[2][$i] == $board[3][$i] && $board[3][$i] == $board[4][$i])
 		        $this->boardtoreturn->winner = $board[0][$i];
 
 		 // //Diagonally
-		 if ($board[0][4] && $board[0][4] == $board[1][3] && $board[1][3] == $board[2][2] && $board[2][2] == $board[3][1] && $board[3][1] == $board[4][0] ||
-		 	 $board[4][0] && $board[4][0] == $board[3][1] && $board[3][1] == $board[2][2] && $board[2][2] == $board[1][3] && $board[1][3] == $board[0][4])
-		 	 $this->boardtoreturn->winner = $board[1][1];
+		 if ($board[0][0] && $board[0][0] == $board[1][1] && $board[1][1] == $board[2][2] && $board[2][2] == $board[3][3] && $board[3][3] == $board[4][4] ||
+		 	 $board[0][4] && $board[0][4] == $board[1][3] && $board[1][3] == $board[2][2] && $board[2][2] == $board[3][1] && $board[3][1] == $board[4][0])
+		 	 $this->boardtoreturn->winner = $board[2][2];
 		 	 
 		 $this->CheckMove($this->totalMoves);
 	}

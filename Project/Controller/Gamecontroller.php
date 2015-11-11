@@ -79,7 +79,7 @@ class Gamecontroller
             return $this->View5;
         }
         
-        if($this->View->DoesUserwanttostartagain()) //Go back to start
+        if($this->View5->DoesUserwanttostartagain()) //Go back to start
         {
             header("location:Index.php");
         }
