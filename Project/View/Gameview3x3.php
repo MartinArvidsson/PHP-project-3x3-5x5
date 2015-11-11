@@ -98,16 +98,6 @@ class Gameview3x3
                 $this->message ="";
                 return $text;   
             }
-            if($this->Model->CheckforFT5Winner()) //If someone won the entire FT5 Series
-            {
-                $_SESSION["totalmoves"] = 0;
-                $_SESSION["FT5Winner"] = "";
-                $text = "<p>$this->message</p>";
-                $text .= $this->GenerateBoardtoshow();
-                $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
-                $this->message ="";
-                return $text;
-            }
             if($this->message =="Oavgjort!") //If no winner was found, play again
             {
                 $_SESSION["totalmoves"] = 0;
@@ -143,7 +133,7 @@ class Gameview3x3
     			$board = $this->board->board;
     			if($board[$xlength][$ylength])
     			{
-    			    $boardtogen .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
+    			    $boardtogen .= "<img src=\"../Project/Content/Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
     			}
     			else
     			{
@@ -173,7 +163,7 @@ class Gameview3x3
     			$board = $this->board->board;
     			if($board[$xlength][$ylength])
     			{
-    			    $boardtogen .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
+    			    $boardtogen .= "<img src=\"../Project/Content/Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
     			}
     			else
     			{

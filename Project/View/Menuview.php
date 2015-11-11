@@ -34,8 +34,8 @@ class Menuview
 			    
 				<fieldset>
 					<legend>Choose gamemode, First to 3 or First to 5</legend>
-    				<input type="submit" name="' . self::$Firsttothree . '" value="First to 3" />
-					<input type="submit" name="' . self::$Firsttofive . '" value="First to 5" />
+    				<input type="submit" name="' . self::$Firsttothree . '" value="First to 3 in a 3x3" />
+					<input type="submit" name="' . self::$Firsttofive . '" value="First to 5 in a 5x5" />
 					
 				</fieldset>
 			</form>
