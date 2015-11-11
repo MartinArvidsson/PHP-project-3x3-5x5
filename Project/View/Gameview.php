@@ -81,31 +81,8 @@ class Gameview
                 <br>
                 <a> Current O wins : $currentOwins</a>
                     <form method=\"post\">
-                        <table>
             ";
-			for ($xlength = 0; $xlength < 3; $xlength++)
-			{
-			    $text .= "<tr>";
-				for ($ylength = 0; $ylength < 3; $ylength++)
-				{
-				    $this->Boxcounter ++;
-					$text .= "<td id= \"board_cell\">";
-					$board = $this->board->board;
-					if($board[$xlength][$ylength])
-					{
-					    $text .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
-					}
-					else
-					{
-					   //REGULAR BUTTON
-					   $text .= "
-					        <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\"></>
-					   ";
-					}
-					$text .= "</td>";
-                }
-                $text .= "</tr>";
-			}
+            $text .= $this->GenerateBoardtoplay();
 			return $text;
         }
         else
@@ -115,30 +92,9 @@ class Gameview
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["FT3Winner"] = "";
                 
-                $text = "<p>$this->message</p><table>";
-                for ($xlength = 0; $xlength < 3; $xlength++)
-			    {
-    			    $text .= "<tr>";
-    				for ($ylength = 0; $ylength < 3; $ylength++)
-    				{
-    				    $this->Boxcounter ++;
-    					$text .= "<td id= \"board_cell\">";
-    					$board = $this->board->board;
-    					if($board[$xlength][$ylength])
-    					{
-    					    $text .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
-    					}
-    					else
-    					{
-    					   //REGULAR BUTTON
-    					   $text .= "
-    					        <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true></>
-    					   ";
-    					}
-    					$text .= "</td>";
-                    }
-                    $text .= "</tr>";
-			    }
+                $text = "<p>$this->message</p>";
+                
+                $text .= $this->GenerateBoardtoshow();
                 $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
                 $this->message ="";
                 return $text;   
@@ -147,30 +103,8 @@ class Gameview
             {
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["FT5Winner"] = "";
-                $text = "<p>$this->message</p><table>";
-                for ($xlength = 0; $xlength < 3; $xlength++)
-			    {
-    			    $text .= "<tr>";
-    				for ($ylength = 0; $ylength < 3; $ylength++)
-    				{
-    				    $this->Boxcounter ++;
-    					$text .= "<td id= \"board_cell\">";
-    					$board = $this->board->board;
-    					if($board[$xlength][$ylength])
-    					{
-    					    $text .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
-    					}
-    					else
-    					{
-    					   //REGULAR BUTTON
-    					   $text .= "
-    					        <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true></>
-    					   ";
-    					}
-    					$text .= "</td>";
-                    }
-                    $text .= "</tr>";
-			    }
+                $text = "<p>$this->message</p>";
+                $text .= $this->GenerateBoardtoshow();
                 $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
                 $this->message ="";
                 return $text;
@@ -179,60 +113,16 @@ class Gameview
             {
                 $_SESSION["totalmoves"] = 0;
                 $this->message ="";
-                $text = "<p>No winner, game tied sadly!, Go again</p><table>";
-                for ($xlength = 0; $xlength < 3; $xlength++)
-			    {
-    			    $text .= "<tr>";
-    				for ($ylength = 0; $ylength < 3; $ylength++)
-    				{
-    				    $this->Boxcounter ++;
-    					$text .= "<td id= \"board_cell\">";
-    					$board = $this->board->board;
-    					if($board[$xlength][$ylength])
-    					{
-    					    $text .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
-    					}
-    					else
-    					{
-    					   //REGULAR BUTTON
-    					   $text .= "
-    					        <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true></>
-    					   ";
-    					}
-    					$text .= "</td>";
-                    }
-                    $text .= "</tr>";
-			    }
+                $text = "<p>No winner, game tied sadly!, Go again</p>";
+                $text .= $this->GenerateBoardtoshow();
                 $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 return $text;
             }
             else //If a series is underway..
             {
                 $_SESSION["totalmoves"] = 0;
-                $text = "<p>$this->message</p> <table>";
-                for ($xlength = 0; $xlength < 3; $xlength++)
-			    {
-    			    $text .= "<tr>";
-    				for ($ylength = 0; $ylength < 3; $ylength++)
-    				{
-    				    $this->Boxcounter ++;
-    					$text .= "<td id= \"board_cell\">";
-    					$board = $this->board->board;
-    					if($board[$xlength][$ylength])
-    					{
-    					    $text .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
-    					}
-    					else
-    					{
-    					   //REGULAR BUTTON
-    					   $text .= "
-    					        <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true></>
-    					   ";
-    					}
-    					$text .= "</td>";
-                    }
-                    $text .= "</tr>";
-			    }
+                $text = "<p>$this->message</p>";
+                $text .= $this->GenerateBoardtoshow();
                 $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 $this->message ="";
                 return $text;
@@ -241,6 +131,65 @@ class Gameview
 
     }
     
+    private function GenerateBoardtoplay() //Generates a playable board
+    {
+        $boardtogen =  "<table>";
+        for ($xlength = 0; $xlength < 3; $xlength++)
+		{
+    		$boardtogen .= "<tr>";
+    		for ($ylength = 0; $ylength < 3; $ylength++)
+    		{
+    			$this->Boxcounter ++;
+    			$boardtogen .= "<td id= \"board_cell\">";
+    			$board = $this->board->board;
+    			if($board[$xlength][$ylength])
+    			{
+    			    $boardtogen .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
+    			}
+    			else
+    			{
+    			//REGULAR BUTTON
+    		    $boardtogen .= "
+    			    <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\"></>
+    			";
+    		}
+    		$boardtogen .= "</td>";
+            }
+            $boardtogen .= "</tr>";
+		}
+		
+		return $boardtogen;
+    }
+    
+    private function GenerateBoardtoshow() //Generate same board as above but with buttons disabled, since it's only for show when someone has won or tied the game.
+    {
+        $boardtogen =  "<table>";
+        for ($xlength = 0; $xlength < 3; $xlength++)
+		{
+    		$boardtogen .= "<tr>";
+    		for ($ylength = 0; $ylength < 3; $ylength++)
+    		{
+    			$this->Boxcounter ++;
+    			$boardtogen .= "<td id= \"board_cell\">";
+    			$board = $this->board->board;
+    			if($board[$xlength][$ylength])
+    			{
+    			    $boardtogen .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
+    			}
+    			else
+    			{
+    			//REGULAR BUTTON
+    		    $boardtogen .= "
+    			    <input type=\"submit\" name= \"{$xlength}-{$ylength}\" value=\"$this->player\" disabled = true></>
+    			";
+    		}
+    		$boardtogen .= "</td>";
+            }
+            $boardtogen .= "</tr>";
+		}
+		
+		return $boardtogen;
+    }    
         
     private function Trytomove() //Attempts to place a marker on the board, this functionallity could prob. have been placed in the model and not in the view...
 	{
@@ -265,7 +214,7 @@ class Gameview
 	//Button functionality.
     public function Doesuserwanttomove()
     {
-        //Checks all boardpositons for a POST
+        //Checks all boardpositons for a POST and uses that position in validation
         for($xcheck = 0; $xcheck < 3; $xcheck++)
         {
             for($ycheck = 0; $ycheck < 3; $ycheck++)
@@ -281,7 +230,7 @@ class Gameview
         return false;
 	}
 	
-	public function Doesuserwanttoplayagain()
+	public function Doesuserwanttoplayagain() //Checks if Play again is pressed.
 	{
 	    if(isset($_POST[self::$NewGame]))
 	    {
@@ -292,7 +241,7 @@ class Gameview
 	    return false;
 	}
 	
-	public function DoesUserwanttostartagain()
+	public function DoesUserwanttostartagain() //Checks if game over is pressed.
 	{
 	    if(isset($_POST[self::$BacktoStart]))
 	    {
@@ -303,7 +252,7 @@ class Gameview
 	    return false;
 	}
     
-    public function GetMovesMade()
+    public function GetMovesMade() //Returns total moves made to the controller to send to model for validation.
     {
         return $_SESSION["totalmoves"];
     }

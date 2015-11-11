@@ -9,21 +9,21 @@ class Gamecontroller
     
     public function Init()
     {
-        if($this->View->Doesuserwanttomove())
+        if($this->View->Doesuserwanttomove()) //If a gameseries is started, generate a board and after that start the game, and after that send data to model to validate.
         {
              $board = $this->View->Getaboard();
              $this->View->StartGame();
              $this->Model->ValidateData($board,$this->View->GetMovesMade());
         }
         
-        if($this->View->Doesuserwanttoplayagain())
+        if($this->View->Doesuserwanttoplayagain()) //If play again is pressed, redirect to gamepage and empty board.
         {
             $this->View->Getaboard();
             header("location:Index.php?Game");
             return $this->View;
         }
         
-        if($this->View->DoesUserwanttostartagain())
+        if($this->View->DoesUserwanttostartagain()) //Go back to start
         {
             header("location:Index.php");
         }
