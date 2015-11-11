@@ -1,5 +1,5 @@
 <?php
-class GameModel
+class GameModel3x3
 {
     private $gamemessage ="";
     private $board;
@@ -64,8 +64,6 @@ class GameModel
 		{
 			$Winner = $this->boardtoreturn->winner;
 			$this->gamemessage = "Player \"$Winner\" you won this round";
-			if($_SESSION["IsgameFT3"] == true)
-			{
 				if($Winner == "X")
 				{
 					$_SESSION["PlayerXwinsFT3"] ++;
@@ -104,50 +102,6 @@ class GameModel
 						}
 					return $this->gamemessage;
 				}
-			}
-			else
-			{
-				if($Winner == "X")
-				{
-					$_SESSION["PlayerXwinsFT5"] ++;
-					$this->gamemessage = "Player \"$Winner\" you won this round";
-					if(!isset($_SESSION["FT5Winner"]))
-					{
-						$_SESSION["FT5Winner"] = "";
-					}					
-						if($_SESSION["PlayerXwinsFT5"] == 5) 
-						{
-	
-							//Spelare X vann FT5 Skicka till Menumodel så det kan presentera datan
-							$_SESSION["FT5Winner"] = $Winner;
-							$this->gamemessage = "Player \"$Winner\" you won the game!";
-							$this->DAL->IncreasePlayerXScoreFT5();
-		    	            $_SESSION["PlayerXwinsFT5"] = 0;
-			                $_SESSION["PlayerOwinsFT5"] = 0;
-						}
-					return $this->gamemessage;
-				}
-				else
-				{
-					$_SESSION["PlayerOwinsFT5"] ++;
-					$this->gamemessage = "Player \"$Winner\" you won this round";
-					if(!isset($_SESSION["FT5Winner"]))
-					{
-						$_SESSION["FT5Winner"] = "";
-						
-					}
-						if($_SESSION["PlayerOwinsFT5"] == 5)
-						{
-							//Spelare O vann FT5 Skicka till Menumodel så det kan presentera datan
-							$_SESSION["FT5Winner"] = $Winner;
-							$this->gamemessage = "Player \"$Winner\" you won the game!";
-							$this->DAL->IncreasePlayerOScoreFT5 ();
-		    	            $_SESSION["PlayerXwinsFT5"] = 0; 
-			                $_SESSION["PlayerOwinsFT5"] = 0;
-						}
-					return $this->gamemessage;
-				}
-			}
 			return $this->gamemessage; //Vem som vann.
 		}
 		return $this->gamemessage; //Tom sträng då kraven inte uppfylldes
@@ -161,16 +115,6 @@ class GameModel
 		}
 		return $_SESSION["FT3Winner"];
 	}
-	
-	public function CheckforFT5Winner()
-	{
-		if(!isset($_SESSION["FT5Winner"]))
-		{
-			$_SESSION["FT5Winner"] = "";
-		}
-		return $_SESSION["FT5Winner"];
-	}
-	
 	public function currentXwinsFT3()
 	{
 		if(!isset($_SESSION["PlayerXwinsFT3"]))
@@ -187,23 +131,5 @@ class GameModel
 			$_SESSION["PlayerOwinsFT3"] = 0;
 		}
 		return $_SESSION["PlayerOwinsFT3"];
-	}
-	
-	public function currentXwinsFT5()
-	{
-		if(!isset($_SESSION["PlayerXwinsFT5"]))
-		{
-			$_SESSION["PlayerXwinsFT5"] = 0;
-		}
-		return $_SESSION["PlayerXwinsFT5"];
-	}
-	
-	public function currentOwinsFT5()
-	{
-		if(!isset($_SESSION["PlayerOwinsFT5"]))
-		{
-			$_SESSION["PlayerOwinsFT5"] = 0;
-		}
-		return $_SESSION["PlayerOwinsFT5"];
 	}
 }

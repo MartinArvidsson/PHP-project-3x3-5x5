@@ -1,6 +1,6 @@
 <?php
 
-class Gameview
+class Gameview5x5
 {
     private static $NewGame = 'Gameview::NewGame';
     private static $BacktoStart = 'Gameview::StartMenu';
@@ -15,7 +15,7 @@ class Gameview
     private $valuetoremove = array();
     private $CurrentGamemode ="";
    
-    public function __construct(Gamemodel $_Model)
+    public function __construct(Gamemodel5x5 $_Model)
     {
         $this->gameOver = false;
         $this->gameWon = false;
@@ -28,9 +28,9 @@ class Gameview
         {
             $this->board = new stdClass;
             $this->board->board = array();
-            for($xlength = 0; $xlength < 3; $xlength++)
+            for($xlength = 0; $xlength < 5; $xlength++)
             {
-                for($ylength = 0; $ylength < 3; $ylength++)
+                for($ylength = 0; $ylength < 5; $ylength++)
                 {
                     $this->board->board[$xlength][$ylength] = null;
                     
@@ -63,16 +63,9 @@ class Gameview
     private function DisplayBoard()
     {
         $this->message = $this->Model->getwhowonmessage();
-        if($_SESSION["IsgameFT3"] == true) //Check if the player wants to play FT3 or FT5
-        {
-            $currentXwins = $this->Model->currentXwinsFT3();
-            $currentOwins = $this->Model->currentOwinsFT3();
-        }
-        else
-        {
+
             $currentXwins = $this->Model->currentXwinsFT5();
             $currentOwins = $this->Model->currentOwinsFT5();
-        }
         if($this->message == "") // IF the game hasn't been played before or no winner is found, generate the 3x3 board.
         {
             $text = "
@@ -134,10 +127,10 @@ class Gameview
     private function GenerateBoardtoplay() //Generates a playable board
     {
         $boardtogen =  "<table>";
-        for ($xlength = 0; $xlength < 3; $xlength++)
+        for ($xlength = 0; $xlength < 5; $xlength++)
 		{
     		$boardtogen .= "<tr>";
-    		for ($ylength = 0; $ylength < 3; $ylength++)
+    		for ($ylength = 0; $ylength < 5; $ylength++)
     		{
     			$this->Boxcounter ++;
     			$boardtogen .= "<td id= \"board_cell\">";
@@ -164,10 +157,10 @@ class Gameview
     private function GenerateBoardtoshow() //Generate same board as above but with buttons disabled, since it's only for show when someone has won or tied the game.
     {
         $boardtogen =  "<table>";
-        for ($xlength = 0; $xlength < 3; $xlength++)
+        for ($xlength = 0; $xlength < 5; $xlength++)
 		{
     		$boardtogen .= "<tr>";
-    		for ($ylength = 0; $ylength < 3; $ylength++)
+    		for ($ylength = 0; $ylength < 5; $ylength++)
     		{
     			$this->Boxcounter ++;
     			$boardtogen .= "<td id= \"board_cell\">";
@@ -215,9 +208,9 @@ class Gameview
     public function Doesuserwanttomove()
     {
         //Checks all boardpositons for a POST and uses that position in validation
-        for($xcheck = 0; $xcheck < 3; $xcheck++)
+        for($xcheck = 0; $xcheck < 5; $xcheck++)
         {
-            for($ycheck = 0; $ycheck < 3; $ycheck++)
+            for($ycheck = 0; $ycheck < 5; $ycheck++)
             {
                 if(isset($_POST[$xcheck."-".$ycheck]))
         	    {
