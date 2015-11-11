@@ -1,0 +1,19 @@
+Notes from examination:
+
+TODO 
+
+Kanske loopa igenom arrayerna https://github.com/MartinArvidsson/PhP-Project/blob/f63fd1e8e72bbedcb735418a091bf3dfbf7b8822/Project/Model/Gamemodel.php#L32 <- Ev.
+
+
+AVKLARADE:
+
+
+Varför inte använda knappar istället för dropdown? KLAR
+
+GET i controller KLAR
+https://github.com/MartinArvidsson/PhP-Project/blob/1.2/Project/Controller/Mastercontroller.php#L29
+
+Strängberoenden mellan gamemodel och gameview <- KLAR
+$_SESSION["PlayerXwinsFT3"]
+
+Borde avgöra oavgjort när man inte kan vinna <- KLAR
