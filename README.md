@@ -1,7 +1,7 @@
 # PhP-Project
 My PhP Project repository.
 
-#####Live: http://martin-viktor-arvidsson.se/FinalProject/Project/Index.php
+#####Live: http://martin-viktor-arvidsson.se/PHP-project-3x3-5x5-master/Project/Index.php
 #Vision
 
 My initial thoughts is to create a web based version of Tic-Tac-Toe(Luffarshack),I have yet to decide if i want it to be playable over the internet(share a URL beween 2 persons and they share the same game session)
