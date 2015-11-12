@@ -1,12 +1,6 @@
-Notes from examination:
-
-TODO 
-
-Kanske loopa igenom arrayerna https://github.com/MartinArvidsson/PhP-Project/blob/f63fd1e8e72bbedcb735418a091bf3dfbf7b8822/Project/Model/Gamemodel.php#L32 <- Ev.
-
-
+﻿Notes from examination:
 AVKLARADE:
-
+Kanske loopa igenom arrayerna https://github.com/MartinArvidsson/PhP-Project/blob/f63fd1e8e72bbedcb735418a091bf3dfbf7b8822/Project/Model/Gamemodel.php#L32
 
 Varför inte använda knappar istället för dropdown? KLAR
 
