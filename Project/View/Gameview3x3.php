@@ -2,8 +2,9 @@
 
 class Gameview3x3
 {
-    private static $NewGame = 'Gameview::NewGame';
-    private static $BacktoStart = 'Gameview::StartMenu';
+    private static $NewGame = 'Gameview3x3::NewGame';
+    private static $BacktoStart = 'Gameview3x3::StartMenu';
+    private static $CancelButton = 'Gameview3x3::StartMenu';
     private $player = "X";
     private $board;
     private $message;
@@ -72,7 +73,7 @@ class Gameview3x3
             $currentXwins = $this->Model->currentXwinsFT5();
             $currentOwins = $this->Model->currentOwinsFT5();
         }
-        if($this->message == "") // IF the game hasn't been played before or no winner is found, generate the 3x3 board.
+        if($this->message == "") //Playable board.
         {
             $text = "
                 <div id =\"board\">
@@ -82,6 +83,8 @@ class Gameview3x3
                     <form method=\"post\">
             ";
             $text .= $this->GenerateBoardtoplay();
+            
+            $text .= "<input type=\"submit\" name=". self::$CancelButton." value=\"Cancel the Game\"></>";
 			return $text;
         }
         else
@@ -107,7 +110,7 @@ class Gameview3x3
                 $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 return $text;
             }
-            else //If a series is underway..
+            else //If a series is underway and someone won a game in the series.
             {
                 $_SESSION["totalmoves"] = 0;
                 $text = "<p>$this->message</p>";
@@ -233,6 +236,17 @@ class Gameview3x3
 	public function DoesUserwanttostartagain() //Checks if game over is pressed.
 	{
 	    if(isset($_POST[self::$BacktoStart]))
+	    {
+	        unset($_SESSION["board"]);
+            $_SESSION["totalmoves"] = 0;	        
+	        return true;
+	    }
+	    return false;
+	}
+	
+	public function DoesUserwanttoCancel() //Checks if game over is pressed.
+	{
+	    if(isset($_POST[self::$CancelButton]))
 	    {
 	        unset($_SESSION["board"]);
             $_SESSION["totalmoves"] = 0;	        

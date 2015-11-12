@@ -2,8 +2,9 @@
 
 class Gameview5x5
 {
-    private static $NewGame = 'Gameview::NewGame';
-    private static $BacktoStart = 'Gameview::StartMenu';
+    private static $NewGame = 'Gameview5x5::NewGame';
+    private static $BacktoStart = 'Gameview5x5::StartMenu';
+    private static $CancelButton = 'Gameview5x5::StartMenu';
     private $player = "X";
     private $board;
     private $message;
@@ -66,7 +67,7 @@ class Gameview5x5
 
             $currentXwins = $this->Model->currentXwinsFT5();
             $currentOwins = $this->Model->currentOwinsFT5();
-        if($this->message == "") // IF the game hasn't been played before or no winner is found, generate the 3x3 board.
+        if($this->message == "") // Playable board when game is underway.
         {
             $text = "
                 <div id =\"board\">
@@ -76,6 +77,7 @@ class Gameview5x5
                     <form method=\"post\">
             ";
             $text .= $this->GenerateBoardtoplay();
+            $text .= "<input type=\"submit\" name=". self::$CancelButton." value=\"Cancel the Game\"></>";
 			return $text;
         }
         else
@@ -99,7 +101,7 @@ class Gameview5x5
                 $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 return $text;
             }
-            else //If a series is underway..
+            else //Shows after a match is won in a series.
             {
                 $_SESSION["totalmoves"] = 0;
                 $text = "<p>$this->message</p>";
@@ -225,6 +227,17 @@ class Gameview5x5
 	public function DoesUserwanttostartagain() //Checks if game over is pressed.
 	{
 	    if(isset($_POST[self::$BacktoStart]))
+	    {
+	        unset($_SESSION["board"]);
+            $_SESSION["totalmoves"] = 0;	        
+	        return true;
+	    }
+	    return false;
+	}
+	
+	public function DoesUserwanttoCancel() //Checks if game over is pressed.
+	{
+	    if(isset($_POST[self::$CancelButton]))
 	    {
 	        unset($_SESSION["board"]);
             $_SESSION["totalmoves"] = 0;	        

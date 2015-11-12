@@ -48,6 +48,12 @@ class Gamecontroller
              $this->Model3->ValidateData($board,$this->View3->GetMovesMade());
         }
         
+        if($this->View3->DoesUserwanttoCancel())
+        {
+            $this->Model3->PlayerCanceledGame();
+            header("location:Index.php");
+        }
+        
         if($this->View3->Doesuserwanttoplayagain()) //If play again is pressed, redirect to gamepage and empty board.
         {
             $this->View3->Getaboard();
@@ -70,6 +76,12 @@ class Gamecontroller
              $board = $this->View5->Getaboard();
              $this->View5->StartGame();
              $this->Model5->ValidateData($board,$this->View5->GetMovesMade());
+        }
+        
+        if($this->View5->DoesUserwanttoCancel())
+        {
+            $this->Model5->PlayerCanceledGame();
+            header("location:Index.php");
         }
         
         if($this->View5->Doesuserwanttoplayagain()) //If play again is pressed, redirect to gamepage and empty board.

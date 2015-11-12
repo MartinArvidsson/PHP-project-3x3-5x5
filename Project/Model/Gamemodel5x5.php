@@ -135,4 +135,10 @@ class GameModel5x5
 		}
 		return $_SESSION["PlayerOwinsFT5"];
 	}
+	
+	public function PlayerCanceledGame()
+	{
+		$_SESSION["PlayerOwinsFT5"] = 0;
+		$_SESSION["PlayerXwinsFT5"] = 0;
+	}
 }
