@@ -15,24 +15,26 @@ This will therefore be work in progress that i will look at when all other thing
 #Use cases
 ##Mandatory
 1. Navigate to page
-2. Able to start a new game of tic-tac-toe
+2. Able to start a new game of tic-tac-toe 3x3 or 5x5
 3. Able to play the version of tic-tac-toe locally between two players.
-4. Able to win a series
-5. Score is visible on startpage.
-
-##Optional
-if i have the time
-1. Able to play a version of the game over internet / Shared URL.
-2. 
+4. Able to place a marker // Not place a marker at already played position on the board.
+5. Able to win a game
+6. Able to cancel a series
+7. Able to win a series
+8. not being able to play markers on the board that shows when a player won something.
+9. Score is visible on startpage.
+10. Score updates accordingly to winning.
 
 #Testcases
 
 | Testcase      |Requirement    | Goal   |Method of testing   | Status |
 | ------------- |:------:| -----:| ----------:| ------:|
 | Gamelogic | Able to place brick/Marker | saved marker after pressed play | Choose marker, then press play | Done |
-| Gamelogic | Able to only place one brick/Marker | saved one marker after pressed play | Choose multiple marker, then press play | Done |
-| Gamelogic   | Able to win by tic-tac-toe pattern | Able to win by tic-tac-toe pattern | By Putting three of the same marker in a line and get a Player "" Won this round| Done |
-| Datahandling   | After winning 3 games in a FT3 series you should win the series | Win series if wins = 3 | Play the series| Done |
+| Gamelogic | Able to not place marker on already played position | not being able to place on already played position | Try press where marker is already placed no marker should be placed | Done |
+| Gamelogic   | Able to win by tic-tac-toe pattern | Able to win by tic-tac-toe pattern | By Putting three or five depending on gamemode of the same marker in a line and get a Player "" Won this round| Done |
+| Gamelogic | Able to cancel a game series | game series cancles when button to cancel is pressed | Start 3x3 or 5x5 press cancel button and get back to start | Done |
+| Datahandling   | After winning 3 games in a FT3 series you should win the series | Win series if wins = 3 | Play the 3x3 gamemode| Done |
+| Datahandling   | After winning 5 games in a FT5 series you should win the series | Win series if playerwins = 5 | Play the 5x5gamemode | Done |
 | Datahandling | After winning a series the score on the startpage should reflect that a player won and update accordingly| Updated score on startpage | Win series | Done |
 
 
